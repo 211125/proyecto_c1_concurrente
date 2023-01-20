@@ -1,7 +1,6 @@
 package com.example.proyecto_c1.controller;
 
-import com.example.proyecto_c1.models.Personaje;
-import com.example.proyecto_c1.models.Vector;
+import com.example.proyecto_c1.models.*;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,12 +16,19 @@ import javafx.scene.shape.Line;
 
 import java.util.Observable;
 import java.util.Observer;
+import java.util.concurrent.Semaphore;
 
 public class controller implements Observer {
 
     private Line linea;
     private Circle per;
     private Personaje personaje;
+    private Modelo modelo;
+
+    private Enemigos enemigo1;
+    private Enemigos enemigo2;
+    private Semaphore puente1;
+    private Semaphore puente2;
     @FXML
     private Label welcomeText;
     @FXML
@@ -41,11 +47,12 @@ public class controller implements Observer {
         linea.setStrokeWidth(5);
         linea.setStroke(Color.BLUE);
         rootScene.getChildren().add(linea);
-
+        //personaje principal
         per = new Circle(10,Color.WHITE);
-        per.setLayoutY(20);
+        per.setLayoutY(150);
         per.setLayoutX(60);
         rootScene.getChildren().add(per);
+
     }
 
 
@@ -56,11 +63,12 @@ public class controller implements Observer {
 
     @FXML
     void btnSaltarOnMouse(MouseEvent event) {
-    personaje = new Personaje();
-    personaje.setPosicion(new Vector(1,20,60));
-    personaje.addObserver(this);
-    new Thread(personaje).start();
-        System.out.println("hola");
+        personaje = new Personaje();
+        personaje.setPosicion(new Vector(1,140,60));
+        personaje.addObserver(this);
+        new Thread(personaje).start();
+            System.out.println("hola");
+
     }
 
     @Override
@@ -72,5 +80,9 @@ public class controller implements Observer {
                 Platform.runLater(()->per.setLayoutY(pos.getY()));
                 break;
         }
+
+
+
     }
+
 }

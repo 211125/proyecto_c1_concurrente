@@ -5,11 +5,15 @@ import java.util.Random;
 
 public class Personaje extends Observable implements Runnable{
     private Vector posicion;
-    private boolean status;
+    private boolean statusAriba;
+    private boolean statusAbajo;
+
+
     private Random random;
 
     public Personaje() {
-        status = true;
+        statusAriba = true;
+        statusAbajo = true;
         random = new Random(System.currentTimeMillis());
     }
 
@@ -17,14 +21,16 @@ public class Personaje extends Observable implements Runnable{
         this.posicion = posicion;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setStatusAriba(boolean statusAriba) {
+        this.statusAriba = statusAriba;
     }
+    public void setStatusAbajo(boolean statusAbajo) {this.statusAbajo = statusAbajo;}
+
 
     @Override
     public void run() {
-      while (status){
-          posicion.setY(posicion.getY()+1);
+      while (statusAriba){
+          posicion.setY(posicion.getY()-10);
           setChanged();
           notifyObservers(posicion);
 
@@ -33,8 +39,21 @@ public class Personaje extends Observable implements Runnable{
           } catch (InterruptedException e) {
               e.printStackTrace();
           }
-          if ( posicion.getY() > 170){
-              setStatus(false);
+          if ( posicion.getY() < 60){
+              while (statusAbajo){
+                  posicion.setY(posicion.getY()+10);
+                  setChanged();
+                  notifyObservers(posicion);
+                  try {
+                      Thread.sleep(50L);
+                  } catch (InterruptedException e) {
+                      e.printStackTrace();
+                  }
+                  if (posicion.getY()>140){
+                      setStatusAriba(false);
+                      setStatusAbajo(false);
+                  }
+              }
           }
       }
     }
