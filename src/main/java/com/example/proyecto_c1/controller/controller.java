@@ -29,7 +29,9 @@ public class controller implements Observer {
     private Modelo modelo;
 
     private Enemigos enemigo1;
+
     private UpdateArgs data;
+
 
     @FXML
     private Label welcomeText;
@@ -69,6 +71,7 @@ public class controller implements Observer {
         rootScene.getChildren().add(recEne);
 
 
+
     }
 
 
@@ -88,15 +91,16 @@ public class controller implements Observer {
       //  UpdateArgs dato =(UpdateArgs)arg;
 
         System.out.println(Thread.currentThread().getName());
-       Vector pos = (Vector)arg;
+      // Vector pos = (Vector)arg;
         VectorEnemigo posi = (VectorEnemigo) arg;
-      //  Platform.runLater(()->per.setLayoutY(pos.getY()));
-        Platform.runLater(()->recEne.setLayoutX(posi.getX_enemigo()));
+     //   Platform.runLater(()->per.setLayoutY(pos.getY()));
+       Platform.runLater(()->recEne.setLayoutX(posi.getX_enemigo()));
+
       //  VectorEnemigo posE = dato.getEnem1();
         //Vector pos = dato.getOb1();
-          //  Platform.runLater(()->per.setLayoutY(dato.getOb1().getY()));
+           //Platform.runLater(()->per.setLayoutY(dato.getOb1().getY()));
           //  Platform.runLater(()->recEne.setLayoutX(dato.getEnem1().getX_enemigo()));
-        if (posi.getX_enemigo() + 10 < -600){
+       if (posi.getX_enemigo() + 10 < -600){
             enemigo1.setStatus(false);
             enemigo1 = new Enemigos();
             //VectorEnemigo(1,590,150)

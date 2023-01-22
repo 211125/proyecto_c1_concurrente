@@ -5,11 +5,15 @@ public class VectorEnemigo {
     private int y_enemigo;
     private int x_enemigo;
 
+
+
+
     public VectorEnemigo(int id_enemigo, int x_enemigo, int y_enemigo) {
         this.id_enemigo = id_enemigo;
         this.y_enemigo = y_enemigo;
         this.x_enemigo = x_enemigo;
     }
+
 
     public int getId_enemigo() {
         return id_enemigo;
@@ -34,4 +38,5 @@ public class VectorEnemigo {
     public void setX_enemigo(int x_enemigo) {
         this.x_enemigo = x_enemigo;
     }
+
 }
