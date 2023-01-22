@@ -8,13 +8,10 @@ public class Personaje extends Observable implements Runnable{
     private boolean statusAriba;
     private boolean statusAbajo;
 
-
-    private Random random;
-
     public Personaje() {
         statusAriba = true;
         statusAbajo = true;
-        random = new Random(System.currentTimeMillis());
+
     }
 
     public void setPosicion(Vector posicion) {

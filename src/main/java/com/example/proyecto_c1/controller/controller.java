@@ -13,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -22,22 +23,34 @@ public class controller implements Observer {
 
     private Line linea;
     private Circle per;
+
+    private Rectangle recEne;
     private Personaje personaje;
     private Modelo modelo;
 
     private Enemigos enemigo1;
-    private Enemigos enemigo2;
-    private Semaphore puente1;
-    private Semaphore puente2;
+    private UpdateArgs data;
+
     @FXML
     private Label welcomeText;
     @FXML
     private AnchorPane rootScene;
     @FXML
-    private Button btnPreparar;
-
+    private Button btnIniciar;
     @FXML
     private Button btnsaltar;
+
+
+    @FXML
+    void btnIniciarOnMouse(MouseEvent event) {
+       enemigo1 = new Enemigos();
+       //VectorEnemigo(1,590,150)
+        enemigo1.setPosicion(new VectorEnemigo(1,22,116));
+        enemigo1.addObserver(this);
+        new Thread(enemigo1).start();
+        System.out.println("no mames ");
+
+    }
 
     @FXML
     public void initialize(){
@@ -52,19 +65,18 @@ public class controller implements Observer {
         per.setLayoutY(150);
         per.setLayoutX(60);
         rootScene.getChildren().add(per);
+        recEne = new Rectangle(522, 116, 80, 50);
+        rootScene.getChildren().add(recEne);
+
 
     }
 
 
-    @FXML
-    void btnPrepararOnMouse(MouseEvent event) {
-
-    }
 
     @FXML
     void btnSaltarOnMouse(MouseEvent event) {
         personaje = new Personaje();
-        personaje.setPosicion(new Vector(1,140,60));
+        personaje.setPosicion(new Vector(140,60));
         personaje.addObserver(this);
         new Thread(personaje).start();
             System.out.println("hola");
@@ -73,16 +85,27 @@ public class controller implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
+      //  UpdateArgs dato =(UpdateArgs)arg;
+
         System.out.println(Thread.currentThread().getName());
-        Vector pos = (Vector)arg;
-        switch (pos.getId()){
-            case 1:
-                Platform.runLater(()->per.setLayoutY(pos.getY()));
-                break;
+       Vector pos = (Vector)arg;
+        VectorEnemigo posi = (VectorEnemigo) arg;
+      //  Platform.runLater(()->per.setLayoutY(pos.getY()));
+        Platform.runLater(()->recEne.setLayoutX(posi.getX_enemigo()));
+      //  VectorEnemigo posE = dato.getEnem1();
+        //Vector pos = dato.getOb1();
+          //  Platform.runLater(()->per.setLayoutY(dato.getOb1().getY()));
+          //  Platform.runLater(()->recEne.setLayoutX(dato.getEnem1().getX_enemigo()));
+        if (posi.getX_enemigo() + 10 < -600){
+            enemigo1.setStatus(false);
+            enemigo1 = new Enemigos();
+            //VectorEnemigo(1,590,150)
+            enemigo1.setPosicion(new VectorEnemigo(1,22,116));
+            enemigo1.addObserver(this);
+            new Thread(enemigo1).start();
+
         }
-
-
-
     }
+
 
 }

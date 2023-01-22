@@ -16,8 +16,5 @@ public class Modelo extends ImageView {
         super(image);
     }
 
-    public void setPosicion(double x, double y) {
-        this.setLayoutX(x);
-        this.setLayoutY(y);
-    }
+
 }

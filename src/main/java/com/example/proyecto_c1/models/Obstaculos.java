@@ -1,13 +1,17 @@
 package com.example.proyecto_c1.models;
 
 
+import javafx.scene.image.ImageView;
+
 import java.util.Observable;
 
-public class Obstaculos extends Observable implements Runnable {
+public class Obstaculos extends ImageView {
 
+    private int id;
+    private Vector posicion;
 
-    @Override
-    public void run() {
-
+    public void setPosicion(Vector posicion) {
+        this.posicion = posicion;
     }
+
 }
