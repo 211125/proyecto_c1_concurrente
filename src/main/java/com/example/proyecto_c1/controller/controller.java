@@ -22,9 +22,10 @@ import java.util.concurrent.Semaphore;
 public class controller implements Observer {
 
     private Line linea;
-    private Circle per;
+    private ImageView per;
+    //private Circle per;
 
-    private Rectangle recEne;
+    private ImageView recEne;
     private Personaje personaje;
     private Modelo modelo;
 
@@ -47,7 +48,7 @@ public class controller implements Observer {
     void btnIniciarOnMouse(MouseEvent event) {
        enemigo1 = new Enemigos();
        //VectorEnemigo(1,590,150)
-        enemigo1.setPosicion(new VectorEnemigo(1,22,116));
+        enemigo1.setPosicion(new VectorEnemigo(1,530,94));
         enemigo1.addObserver(this);
         new Thread(enemigo1).start();
         System.out.println("no mames ");
@@ -63,11 +64,19 @@ public class controller implements Observer {
         linea.setStroke(Color.BLUE);
         rootScene.getChildren().add(linea);
         //personaje principal
-        per = new Circle(10,Color.WHITE);
-        per.setLayoutY(150);
+      //  per = new Circle(10,Color.WHITE);
+        per = new ImageView(new Image(getClass().getResourceAsStream("/styles/img/caminar.gif")));
+        per.setFitWidth(90);
+        per.setFitHeight(90);
+        per.setLayoutY(80);
         per.setLayoutX(60);
         rootScene.getChildren().add(per);
-        recEne = new Rectangle(522, 116, 80, 50);
+       // recEne = new Rectangle(522, 116, 80, 50);
+        recEne = new ImageView(new Image(getClass().getResourceAsStream("/styles/img/enemigo.gif")));
+        recEne.setFitWidth(70);
+        recEne.setFitHeight(70);
+        recEne.setLayoutX(530);
+        recEne.setLayoutY(94);
         rootScene.getChildren().add(recEne);
 
 
@@ -79,7 +88,7 @@ public class controller implements Observer {
     @FXML
     void btnSaltarOnMouse(MouseEvent event) {
         personaje = new Personaje();
-        personaje.setPosicion(new Vector(140,60));
+        personaje.setPosicion(new Vector(80,60));
         personaje.addObserver(this);
         new Thread(personaje).start();
             System.out.println("hola");
@@ -89,18 +98,40 @@ public class controller implements Observer {
     @Override
     public void update(Observable o, Object arg) {
       //  UpdateArgs dato =(UpdateArgs)arg;
+        if (o instanceof Enemigos){
+            VectorEnemigo posi = (VectorEnemigo) arg;
+            Platform.runLater(()->recEne.setLayoutX(posi.getX_enemigo()));
+            if (posi.getX_enemigo() + 10 < -300){
+                enemigo1.setStatus(false);
+                enemigo1 = new Enemigos();
+                //VectorEnemigo(1,590,150)
+                enemigo1.setPosicion(new VectorEnemigo(1,530,94));
+                enemigo1.addObserver(this);
+                new Thread(enemigo1).start();
+                /**/
 
+            }
+        }
+        else {
+            Vector pos = (Vector)arg;
+            Platform.runLater(()->per.setLayoutY(pos.getY()));
+
+        }
+
+        if (per.getBoundsInParent().intersects(recEne.getBoundsInParent())){
+            enemigo1.setStatus(false);
+            personaje.setStatusAbajo(false);
+            personaje.setStatusAriba(false);
+        }
         System.out.println(Thread.currentThread().getName());
-      // Vector pos = (Vector)arg;
-        VectorEnemigo posi = (VectorEnemigo) arg;
-     //   Platform.runLater(()->per.setLayoutY(pos.getY()));
-       Platform.runLater(()->recEne.setLayoutX(posi.getX_enemigo()));
+
+
 
       //  VectorEnemigo posE = dato.getEnem1();
         //Vector pos = dato.getOb1();
            //Platform.runLater(()->per.setLayoutY(dato.getOb1().getY()));
           //  Platform.runLater(()->recEne.setLayoutX(dato.getEnem1().getX_enemigo()));
-       if (posi.getX_enemigo() + 10 < -600){
+     /*  if (posi.getX_enemigo() + 10 < -600){
             enemigo1.setStatus(false);
             enemigo1 = new Enemigos();
             //VectorEnemigo(1,590,150)
@@ -108,7 +139,7 @@ public class controller implements Observer {
             enemigo1.addObserver(this);
             new Thread(enemigo1).start();
 
-        }
+        }*/
     }
 
 

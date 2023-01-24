@@ -1,6 +1,6 @@
 .bodybg {
-    -fx-background-image: url("styles/img/fondo.jpg");
-    -fx-background-position: center center;
+    -fx-background-image: url("img/fondo.jpg");
+    -fx-background-position: center ;
     -fx-background-repeat: no-repeat;
     -fx-background-attachment: fixed;
     -fx-background-size: cover;
