@@ -1,0 +1,8 @@
+.bodybg {
+    -fx-background-image: url("img/fondo.jpg");
+    -fx-background-position: center ;
+    -fx-background-repeat: no-repeat;
+    -fx-background-attachment: fixed;
+    -fx-background-size: cover;
+    -fx-background-color: #66999;
+}
