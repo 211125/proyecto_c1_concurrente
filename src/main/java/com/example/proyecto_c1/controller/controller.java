@@ -129,20 +129,6 @@ public class controller implements Observer {
         System.out.println(Thread.currentThread().getName());
 
 
-
-      //  VectorEnemigo posE = dato.getEnem1();
-        //Vector pos = dato.getOb1();
-           //Platform.runLater(()->per.setLayoutY(dato.getOb1().getY()));
-          //  Platform.runLater(()->recEne.setLayoutX(dato.getEnem1().getX_enemigo()));
-     /*  if (posi.getX_enemigo() + 10 < -600){
-            enemigo1.setStatus(false);
-            enemigo1 = new Enemigos();
-            //VectorEnemigo(1,590,150)
-            enemigo1.setPosicion(new VectorEnemigo(1,22,116));
-            enemigo1.addObserver(this);
-            new Thread(enemigo1).start();
-
-        }*/
     }
 
 
