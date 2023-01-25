@@ -22,6 +22,7 @@ import java.util.concurrent.Semaphore;
 public class controller implements Observer {
 
     private Line linea;
+    private ImageView tiera;
     private ImageView per;
     //private Circle per;
 
@@ -63,6 +64,8 @@ public class controller implements Observer {
         linea.setStrokeWidth(5);
         linea.setStroke(Color.BLUE);
         rootScene.getChildren().add(linea);
+       // tiera = new ImageView(new Image(getClass().getResourceAsStream("/styles/img/caminar.gif")));
+
         //personaje principal
       //  per = new Circle(10,Color.WHITE);
         per = new ImageView(new Image(getClass().getResourceAsStream("/styles/img/caminar.gif")));
