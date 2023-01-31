@@ -29,8 +29,8 @@ public class Boomba extends Observable implements Runnable{
 
     public void setPosicion(){
 
-        posicion.setX(500);
-        posicion.setY(400);
+        posicion.setX(569);
+        posicion.setY(237);
         distanciaX = 50;
         distanciaY = 50;
     }
@@ -41,26 +41,23 @@ public class Boomba extends Observable implements Runnable{
     @Override
     public void run() {
         while(status) {
-            //Notificar cambio
             this.setChanged();
             this.notifyObservers(this.posicion);
-            //Dormir el hilo
+
             try {
                 Thread.sleep(500L);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            //Realizar nuevos cálculos
             posicion.setX(posicion.getX() - distanciaX);
             posicion.setY(posicion.getY() - distanciaY);
-            System.out.println(posicion.getX()+":"+posicion.getY());
 
             if (posicion.getX() >= 590)
                 distanciaX *= -1;
             /*
             if (pos.getX() < 10)
                 distanciaX *= -1;*/
-            if (posicion.getY() < 200)
+            if (posicion.getY() < 400)
                 distanciaY *= -1;
             if (posicion.getY() >= 490)
                 distanciaY *= -1;

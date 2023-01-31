@@ -6,3 +6,38 @@
     -fx-background-size: cover;
     -fx-background-color: #66999;
 }
+
+.inicio {
+    -fx-background-image: url("img/photo.jpg");
+    -fx-background-position: center ;
+    -fx-background-repeat: no-repeat;
+    -fx-background-attachment: fixed;
+    -fx-background-size: cover;
+    -fx-background-color: #66999;
+}
+
+
+                                                       /* CSS */
+                                                   .button-33 {
+                                                       -fx-background-color: #c2fbd7;
+                                                       -fx-border-radius: 100px;
+                                                       -fx-box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+                                                       -fx-color: green;
+                                                       -fx-cursor: pointer;
+                                                       -fx-display: inline-block;
+                                                       -fx-font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+                                                       -fx-padding: 7px 20px;
+                                                       -fx-text-align: center;
+                                                       -fx-text-decoration: none;
+                                                       -fx-transition: all 250ms;
+                                                       -fx-border: 0;
+                                                       -fx-font-size: 16px;
+                                                       -fx-user-select: none;
+                                                       -fx--webkit-user-select: none;
+                                                       -fx-touch-action: manipulation;
+                                                   }
+
+.button-33:hover {
+    -fx-box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
+    -fx-transform: scale(1.05) rotate(-1deg);
+}

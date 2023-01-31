@@ -36,7 +36,7 @@ public class Personaje extends Observable implements Runnable{
           } catch (InterruptedException e) {
               e.printStackTrace();
           }
-          if ( posicion.getY() < -160){
+          if ( posicion.getY() < 66){
               while (statusAbajo){
                   posicion.setY(posicion.getY()+10);
                   setChanged();
@@ -46,7 +46,7 @@ public class Personaje extends Observable implements Runnable{
                   } catch (InterruptedException e) {
                       e.printStackTrace();
                   }
-                  if (posicion.getY()>60){
+                  if (posicion.getY()>238){
                       setStatusAriba(false);
                       setStatusAbajo(false);
                   }

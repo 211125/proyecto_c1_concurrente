@@ -29,8 +29,8 @@ public class Enemigos extends Observable implements Runnable {
     @Override
     public void run() {
         while (status){
-           posicion.setX_enemigo(posicion.getX_enemigo()-10);
-         // posicion.getEnem1().setX_enemigo(posicion.getEnem1().getX_enemigo()-10);
+           posicion.setX_enemigo(posicion.getX_enemigo()-random.nextInt(30));
+           // posicion.getEnem1().setX_enemigo(posicion.getEnem1().getX_enemigo()-10);
             setChanged();
             notifyObservers(posicion);
             try {
@@ -38,7 +38,7 @@ public class Enemigos extends Observable implements Runnable {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-
+            posicion.setY_enemigo(posicion.getY_enemigo()-(random.nextInt(41)+10));
         }
     }
 }
